@@ -1,0 +1,44 @@
+if id
+    script.
+        window.SiteData = {id: !{id}}
+a(class="btn btn-link" href="/") <- Back to list
+div(class="form-group")
+    label(for="name") Name
+    input(id="name" type="text" class="form-control" data-bind="value: site.name")
+div(class="form-group")
+    label(for="destination") Destination
+    input(id="destination" type="text" class="form-control" data-bind="value: site.destination")
+div(class="btn btn-sm btn-success" data-bind="click: reverse") Reverse
+div(class="form-group")
+    label(for="source") Source
+    input(id="source" type="text" class="form-control" data-bind="value: site.source")
+
+div(class="form-group")
+    label(for="flags") Flags
+    input(id="flags" type="text" class="form-control" data-bind="value: site.flags")
+
+div(class="form-group")
+    label(for="port") Port
+    input(id="port" type="text" class="form-control" data-bind="value: site.port")
+
+div(class="well")
+    h3 Options
+    div( data-bind="foreach: site.options")
+        div(style="display: flex; margin-bottom: 20px;")
+            input(style="margin-right: 20px;" placeholder="name" class="form-control" data-bind="value: name")
+            input(style="margin-right: 20px;" placeholder="value" class="form-control" data-bind="value: value")
+            div(class="btn btn-danger btn-sm" data-bind="click: $parent.removeOption") Remove option
+    div(style="margin-bottom: 20px;" class="btn btn-success btn-sm" data-bind="click: addOption") Add option
+
+div(class="well")
+    h3 Exclude
+    div(data-bind="foreach: site.exclude")
+        div(style="display: flex; margin-bottom: 20px;")
+            input(style="margin-right: 20px;" placeholder="exclude" class="form-control" data-bind="value: value")
+            div(class="btn btn-danger btn-sm" data-bind="click: $parent.removeExclude") Remove option
+    div(class="btn btn-success btn-sm" data-bind="click: addExclude") Add exclude
+
+div(class="btn btn-group")
+    div(class="btn btn-primary" data-bind="click: execute, text: proccessing() ? 'Executing..' : 'Execute'")
+    div(class="btn btn-success" data-bind="click: save") Save
+pre(style="color: #fff; background: #2f2f2f; height: 400px; overflow: scroll;margin-top: 40px;" data-bind="visible: result(), html: result")

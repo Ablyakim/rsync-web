@@ -1,0 +1,24 @@
+extends layout.pug
+block content
+  
+  div.container#container
+    h1 Sites
+    a(class="btn btn-success pull-right" href="/site/create" style="margin-bottom: 20px") Create
+    table(class="table table-bordered")
+        thead
+            tr
+                th Name
+                th Source
+                th Destination
+                th Action
+        tbody(data-bind="foreach: sites")
+            tr()
+                td(data-bind="text: name")
+                td(data-bind="text: source")
+                td(data-bind="text: destination")
+                td
+                    div(class="btn-group")
+                        a(class="btn btn-primary" data-bind="attr: {href: '/site/edit/' + id}") Show
+                        a(class="btn btn-danger" data-bind="click: $parent.remove") Remove
+block append js
+    script(src="/js/index.js")
