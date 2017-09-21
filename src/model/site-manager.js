@@ -1,20 +1,20 @@
 module.exports = class {
-  constructor(sitePromise) {
-    this._sitePromise = sitePromise;
+  constructor(siteModelPromise) {
+    this._siteModelPromise = siteModelPromise;
   }
   
   /**
    * @return {Promise}
    */
-  async getModel() {
-    return await this._sitePromise();
+  getModel() {
+    return this._siteModelPromise();
   }
 
   /**
    * @return {Promise}
    */
   async loadAll() {
-    const SiteModel = await this._sitePromise();
+    const SiteModel = await this._siteModelPromise();
     return SiteModel.findAll();
   }
   /**
@@ -25,7 +25,7 @@ module.exports = class {
    * @return {Promise}
    */
   async getById(id) {
-    const SiteModel = await this._sitePromise();
+    const SiteModel = await this._siteModelPromise();
     return SiteModel.findById(id);
   }
 };
