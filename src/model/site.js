@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 
 const init = async connection => {
   const sequelize = await connection();
-  console.log(sequelize);
+  
   const Site = sequelize.define('site', {
     id: {
       type: Sequelize.INTEGER,
